@@ -1,24 +1,12 @@
 import { useState } from "react";
 import TitleBar from "./TitleBar";
 import ClassButton from "./ClassButton";
-
-const scheduleData = [
-  { name: "프론트엔드" },
-  { name: "백엔드 : Java" },
-  { name: "백엔드 : Python" },
-  { name: "앱스쿨 : iOS" },
-  { name: "AI 스쿨" },
-  { name: "앱스쿨 : Android" },
-  { name: "데이터 분석" },
-  { name: "디자인" },
-  { name: "블록체인" },
-  { name: "스타트업 스테이션" },
-  { name: "프론트엔드 심화" },
-  { name: "백엔드 심화" },
-];
+import ClassCard from "./ClassCard";
+import classData from "../data/classData.json";
 
 const ScheduleSection = () => {
   const [isClass, setIsClass] = useState(true);
+  const [classCardComps, setClassCardComps] = useState([]);
 
   return (
     <section className="mt-10 lg:mt-20 container-style px-6">
@@ -52,10 +40,31 @@ const ScheduleSection = () => {
         관심있는 클래스를 선택해주세요.
       </h6>
       <div className="border border-techit-gray-100 rounded-lg p-6 flex flex-wrap gap-[10px]">
-        {scheduleData.map((v, i) => (
-          <ClassButton key={i} name={v.name} />
+        {classData.map((v, i) => (
+          <ClassButton
+            key={i}
+            classData={v}
+            classCardComps={classCardComps}
+            setClassCardComps={setClassCardComps}
+          />
         ))}
       </div>
+      <ul className="grid grid-cols-2 gap-6 mt-6">
+        {classCardComps.map((v, i) => (
+          <li
+            key={v.name + i}
+            className="border border-techit-gray-100 rounded-lg max-w-[604px] w-full"
+          >
+            <ClassCard
+              name={v.name}
+              description={v.description}
+              image={v.image}
+              bgColor={v.bgColor}
+              alarm={v.alarm}
+            />
+          </li>
+        ))}
+      </ul>
     </section>
   );
 };

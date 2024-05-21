@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import SlideBanner from "./components/SlideBanner";
 import KdtSection from "./components/KdtSection";
 import ScheduleSection from "./components/ScheduleSection";
-import ClassButton from "./components/ClassButton";
 
 const App = () => {
   const [isViewed, setIsViewed] = useState(false);
@@ -24,7 +23,6 @@ const App = () => {
       <SlideBanner />
       <KdtSection />
       <ScheduleSection />
-      <ClassButton />
     </div>
   );
 };
